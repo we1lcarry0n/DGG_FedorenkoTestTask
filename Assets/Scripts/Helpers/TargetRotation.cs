@@ -23,7 +23,7 @@ public class TargetRotation : MonoBehaviour
 
     private void ApplySinFluctuation()
     {
-        float sin = Mathf.Sin((transform.rotation.eulerAngles.y * Mathf.PI)/180*2);
-        transform.position = new Vector3(0, sin + _currentYOffset, 0);
+        float sin = Mathf.Sin((transform.rotation.eulerAngles.y * Mathf.PI)/180f*2f);
+        transform.position = new Vector3(0f, sin + _currentYOffset, 0f);
     }
 }
