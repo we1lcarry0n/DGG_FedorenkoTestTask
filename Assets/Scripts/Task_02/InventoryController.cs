@@ -3,45 +3,53 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
+    [SerializeField] private GameObject _uiItemPrefab;
+    [SerializeField] private Transform _uiContainer;
     [SerializeField] private List<InventoryItemSO> _possibleItems;
 
-    private List<InventoryItemSO> _itemsInInventory = new List<InventoryItemSO>();
+    private List<InventoryItemUI> _itemsInInventory = new List<InventoryItemUI>();
 
-    public void AddNewItem(InventoryItemSO newItem)
+    public void AddNewItem()
     {
-        if (IsItemArleadyInInventory(newItem) && newItem.IsStackable)
+        InventoryItemSO newItemScriptable = GetRandomItem();
+        InventoryItemUI alredyInInventoryUI = IsItemArleadyInInventory(newItemScriptable);
+        if (alredyInInventoryUI != null && newItemScriptable.IsStackable)
         {
-            newItem.AddAmount(1);
-            // Update GUI
-            ShowDebugInv();
+            alredyInInventoryUI.AddAmount(1);
         }
         else
         {
-            _itemsInInventory.Add(newItem);
-            // Update GUI
-            ShowDebugInv();
+            GameObject newItemObject = Instantiate(_uiItemPrefab, _uiContainer);
+            InventoryItemUI newUIItem = newItemObject.GetComponent<InventoryItemUI>();
+            _itemsInInventory.Add(newUIItem);
+            newUIItem.InitializeItemUI(this, newItemScriptable, _itemsInInventory.Count - 1);
         }
     }
 
     public void RemoveItemAtIndex(int itemIndex)
     {
-        if (_itemsInInventory[itemIndex].Amount > 1)
+        InventoryItemUI itemUIAtIndex = _itemsInInventory[itemIndex];
+        if (itemUIAtIndex.Amount > 1)
         {
-            _itemsInInventory[itemIndex].RemoveAmount(1);
-            // Update GUI
-            ShowDebugInv();
+            itemUIAtIndex.RemoveAmount(1);
         }
         else
         {
             _itemsInInventory.RemoveAt(itemIndex);
-            // Update GUI
-            ShowDebugInv();
+            itemUIAtIndex.RemoveItemUI();
         }
     }
 
-    private bool IsItemArleadyInInventory(InventoryItemSO item)
+    private InventoryItemUI IsItemArleadyInInventory(InventoryItemSO item)
     {
-        return _itemsInInventory.Contains(item);
+        foreach (InventoryItemUI itemUI in _itemsInInventory)
+        {
+            if (itemUI.ID == item.ID)
+            {
+                return itemUI;
+            }
+        }
+        return null;
     }
 
     private InventoryItemSO GetRandomItem()
@@ -49,13 +57,4 @@ public class InventoryController : MonoBehaviour
         return _possibleItems[Random.Range(0, _possibleItems.Count)];
     }
 
-    private void ShowDebugInv()
-    {
-        string inventory = "";
-        foreach (InventoryItemSO item in _itemsInInventory)
-        {
-            inventory += $"{item.Name} : {item.Amount}, ";
-        }
-        Debug.Log(inventory);
-    }
 }

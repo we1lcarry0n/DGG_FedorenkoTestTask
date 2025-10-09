@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Gold
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Gold
-  <Icon>k__BackingField: {fileID: 0}
+  <ID>k__BackingField: 2
+  <Icon>k__BackingField: {fileID: 21300000, guid: 7f771feeaeb852e45925d335137865ba, type: 3}
   <IsStackable>k__BackingField: 1
   <MaxAmount>k__BackingField: 99
-  <Amount>k__BackingField: 0
+  <InitialAmount>k__BackingField: 1

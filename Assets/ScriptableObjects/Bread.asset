@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Bread
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Bread
-  <Icon>k__BackingField: {fileID: 0}
+  <ID>k__BackingField: 1
+  <Icon>k__BackingField: {fileID: 21300000, guid: 579d769cc2a1d2a40b103b0bbfc0d630, type: 3}
   <IsStackable>k__BackingField: 1
   <MaxAmount>k__BackingField: 99
-  <Amount>k__BackingField: 0
+  <InitialAmount>k__BackingField: 1

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Sword
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Sword
-  <Icon>k__BackingField: {fileID: 0}
+  <ID>k__BackingField: 3
+  <Icon>k__BackingField: {fileID: 21300000, guid: a0196865cb25d64409f9056733309b32, type: 3}
   <IsStackable>k__BackingField: 0
-  <MaxAmount>k__BackingField: 0
-  <Amount>k__BackingField: 0
+  <MaxAmount>k__BackingField: 1
+  <InitialAmount>k__BackingField: 1

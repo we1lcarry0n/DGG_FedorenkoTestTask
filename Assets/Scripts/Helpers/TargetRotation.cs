@@ -4,6 +4,8 @@ public class TargetRotation : MonoBehaviour
 {
     [SerializeField] private float _rotationSpeed;
     [SerializeField] private bool _rotateCurved;
+    [SerializeField]
+    [Range(.1f, 10)] private float _curvatureMultiplier;
 
     private float _currentYOffset;
 
@@ -23,7 +25,7 @@ public class TargetRotation : MonoBehaviour
 
     private void ApplySinFluctuation()
     {
-        float sin = Mathf.Sin((transform.rotation.eulerAngles.y * Mathf.PI)/180f*2f);
+        float sin = Mathf.Sin((transform.rotation.eulerAngles.y * Mathf.PI)/180f*_curvatureMultiplier);
         transform.position = new Vector3(0, sin + _currentYOffset, 0);
     }
 }

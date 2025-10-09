@@ -638,7 +638,7 @@ MonoBehaviour:
   - {fileID: 1631537186637899531, guid: afbeffe89f42e814fb445efc8d00b7eb, type: 3}
   _spawnInterval: 2
   _spawnRange: 5
-  _spawnFirstImmidiately: 0
+  _spawnFirstImmidiately: 1
 --- !u!1001 &680331043
 PrefabInstance:
   m_ObjectHideFlags: 0
