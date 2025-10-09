@@ -16,7 +16,7 @@ public class AutoLookAt : MonoBehaviour
 
     private void Update()
     {
-        _targetPosition = _lockYAxis ? new Vector3(_target.position.x, 0f, _target.position.z) : _target.position - transform.position;
+        _targetPosition = _lockYAxis ? new Vector3(_target.position.x, 0, _target.position.z) : _target.position - transform.position;
         Quaternion rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(_targetPosition), _rotationSpeed * Time.deltaTime);
         transform.rotation = rotation;
     }
