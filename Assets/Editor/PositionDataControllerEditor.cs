@@ -11,11 +11,11 @@ public class PositionDataControllerEditor : Editor
         PositionDataController targetDataContoller = (PositionDataController)target;
         if (GUILayout.Button("Save"))
         {
-            targetDataContoller.SavePosition();
+            targetDataContoller.SavePosition();  // Call Save function from Inspector
         }
         if (GUILayout.Button("Load"))
         {
-            targetDataContoller.LoadPosition();
+            targetDataContoller.LoadPosition();  // Call Load function from Inspector
         }
     }
 }

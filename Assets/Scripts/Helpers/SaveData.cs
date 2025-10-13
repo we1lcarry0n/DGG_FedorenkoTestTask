@@ -2,8 +2,9 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class SaveData
+public class SaveData  
 {
+    // This is the class that stores data of objects to serialize them
     public SaveData(string objectName, Vector3 objectPosition)
     {
         this.ObjectName = objectName;

@@ -16,14 +16,14 @@ public class TargetRotation : MonoBehaviour
 
     private void Update()
     {
-        transform.RotateAround(Vector3.zero, Vector3.up, _rotationSpeed * Time.deltaTime);
+        transform.RotateAround(Vector3.zero, Vector3.up, _rotationSpeed * Time.deltaTime); // Rotate the target around the Y axis
         if (_rotateCurved)
         {
             ApplySinFluctuation();
         }
     }
 
-    private void ApplySinFluctuation()
+    private void ApplySinFluctuation()  // Function to apply motion along the Y axis based on Sin(x)
     {
         float sin = Mathf.Sin((transform.rotation.eulerAngles.y * Mathf.PI)/180f*_curvatureMultiplier);
         transform.position = new Vector3(0, sin + _currentYOffset, 0);

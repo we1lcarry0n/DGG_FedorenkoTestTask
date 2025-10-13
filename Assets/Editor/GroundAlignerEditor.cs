@@ -11,7 +11,7 @@ public class GroundAlignerEditor : Editor
         GroundAligner targetAligner = (GroundAligner)target;
         if (GUILayout.Button("Align to Ground"))
         {
-            targetAligner.AlignToGround();
+            targetAligner.AlignToGround();  // Create button in Inspector to call the function
         }
     }
 }

@@ -13,21 +13,21 @@ public class GroundAligner : MonoBehaviour
     private Vector3 DeterminePosition()
     {
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, Vector3.down, out hit, _alignMaxDistance, _groundLayer))
+        if(Physics.Raycast(transform.position, Vector3.down, out hit, _alignMaxDistance, _groundLayer)) // Shoot the raycast down to search the Ground layer object
         {
             AdjustRotation(hit);
-            return hit.point;
+            return hit.point; // Get the hit point coordinates
         }
         Debug.Log("Alignment to ground was not successfull!");
         return transform.position;
     }
 
     private void AdjustRotation(RaycastHit hit)
-    {
-        Vector3 hitNormal = hit.normal;
+    { 
+        Vector3 hitNormal = hit.normal;  // Determine the normal vector of the surface
         if (hitNormal.y > 0 && hitNormal.y < 0.9f)
         {
-            transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(Vector3.down, hitNormal) * -1f);
+            transform.rotation = Quaternion.LookRotation(Vector3.ProjectOnPlane(Vector3.down, hitNormal) * -1f); // Project normal vector on plane to get the rotation of standing object
         }
     }
 

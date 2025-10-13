@@ -9,15 +9,15 @@ public class InventoryController : MonoBehaviour
 
     private List<InventoryItemUI> _itemsInInventory = new List<InventoryItemUI>();
 
-    public void AddNewItem()
+    public void AddNewItem()  //Function to add new item to inventory
     {
         InventoryItemSO newItemScriptable = GetRandomItem();
         InventoryItemUI alredyInInventoryUI = IsItemArleadyInInventory(newItemScriptable);
-        if (alredyInInventoryUI != null && newItemScriptable.IsStackable)
+        if (alredyInInventoryUI != null && newItemScriptable.IsStackable)  // If object is stackable - remove amount
         {
             alredyInInventoryUI.AddAmount(1);
         }
-        else
+        else  // Create new Object on scene and call Initialize item on it's Class
         {
             GameObject newItemObject = Instantiate(_uiItemPrefab, _uiContainer);
             InventoryItemUI newUIItem = newItemObject.GetComponent<InventoryItemUI>();
@@ -26,7 +26,7 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    public void RemoveItemAtIndex(int itemIndex)
+    public void RemoveItemAtIndex(int itemIndex)  // Remove item from List or reduce amount by it's index that is assigned on initialization
     {
         InventoryItemUI itemUIAtIndex = _itemsInInventory[itemIndex];
         if (itemUIAtIndex.Amount > 1)
@@ -40,7 +40,7 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    private InventoryItemUI IsItemArleadyInInventory(InventoryItemSO item)
+    private InventoryItemUI IsItemArleadyInInventory(InventoryItemSO item)  //Check if item is already in inventory by item's ID
     {
         foreach (InventoryItemUI itemUI in _itemsInInventory)
         {
@@ -52,7 +52,7 @@ public class InventoryController : MonoBehaviour
         return null;
     }
 
-    private InventoryItemSO GetRandomItem()
+    private InventoryItemSO GetRandomItem()  // Function to get random Scriptable object from list
     {
         return _possibleItems[Random.Range(0, _possibleItems.Count)];
     }

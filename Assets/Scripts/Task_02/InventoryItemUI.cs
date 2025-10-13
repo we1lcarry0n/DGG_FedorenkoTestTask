@@ -15,7 +15,7 @@ public class InventoryItemUI : MonoBehaviour
     private int _currentIndex;
     private InventoryController _controller;
 
-    public void InitializeItemUI(InventoryController controller ,InventoryItemSO inventoryItem, int index)
+    public void InitializeItemUI(InventoryController controller ,InventoryItemSO inventoryItem, int index) // Initialize this class with ScriptableObject data
     {
         ID = inventoryItem.ID;
         Amount = inventoryItem.InitialAmount;
@@ -26,31 +26,31 @@ public class InventoryItemUI : MonoBehaviour
         _controller = controller;
     }
 
-    public void AddAmount(int amount)
+    public void AddAmount(int amount)  // Function to add amount to item
     {
         Amount += amount;
         Mathf.Clamp(Amount, 0, _maxAmount);
         UpdateQuantityUI(Amount);
     }
 
-    public void RemoveAmount(int amount)
+    public void RemoveAmount(int amount)  // Function to remove amount from item
     {
         Amount -= amount;
         Mathf.Clamp(Amount, 0, _maxAmount);
         UpdateQuantityUI(Amount);
     }
 
-    public void RemoveButtonClicked()
+    public void RemoveButtonClicked()  // Remove this item from controller's list
     {
         _controller.RemoveItemAtIndex(_currentIndex);
     }
 
-    public void RemoveItemUI()
+    public void RemoveItemUI() // Destroy this object from Scene
     {
         Destroy(gameObject);
     }
 
-    private void UpdateQuantityUI(int newAmount)
+    private void UpdateQuantityUI(int newAmount) // Update item's amount text
     {
         _itemAmountText.text = newAmount.ToString();
     }
